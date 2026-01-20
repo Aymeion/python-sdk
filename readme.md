@@ -24,6 +24,7 @@ You will need a Soundcharts API subscription to use this package.
 ## Usage
 
 **Synchronous Client**
+
 Best for standard scripts, Jupyter notebooks, or scheduled cron jobs.
 
 ```python
@@ -37,6 +38,7 @@ print(billie_metadata)
 ```
 
 **Asynchronous Client**
+
 Recommended for high-performance applications, FastAPI, or when integrating with other asyncio libraries. This avoids blocking the event loop and allows for faster execution in concurrent environments.
 
 ```python
