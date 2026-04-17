@@ -114,11 +114,19 @@ class Artist:
         return result if result is not None else {}
 
     @staticmethod
-    def get_songs(artist_uuid, offset=0, limit=100, sort_by="name", sort_order="asc"):
+    def get_songs(
+        artist_uuid,
+        main_performer=None,
+        offset=0,
+        limit=100,
+        sort_by="name",
+        sort_order="asc",
+    ):
         """
         Get songs by a specific artist, including tracks in which the artist is featured.
 
         :param artist_uuid: An artist UUID.
+        :param main_performer: If 1, only return the main performer songs. If 0, only return the featuring performer songs. If empty, return both.
         :param offset: Pagination offset. Default: 0.
         :param limit: Number of results to retrieve. None: no limit. Default: 100.
         :param sort_by: Sort criteria. Available values are : name, releaseDate, spotifyStream, shazamCount, youtubeViews, spotifyPopularity. Default: name
@@ -128,6 +136,7 @@ class Artist:
 
         endpoint = f"/api/v2.21/artist/{artist_uuid}/songs"
         params = {
+            "mainPerformer": main_performer,
             "offset": offset,
             "limit": limit,
             "sortBy": sort_by,
@@ -886,12 +895,18 @@ class ArtistAsync:
 
     @staticmethod
     async def get_songs(
-        artist_uuid, offset=0, limit=100, sort_by="name", sort_order="asc"
+        artist_uuid,
+        main_performer=None,
+        offset=0,
+        limit=100,
+        sort_by="name",
+        sort_order="asc",
     ):
         """
         Get songs by a specific artist, including tracks in which the artist is featured.
 
         :param artist_uuid: An artist UUID.
+        :param main_performer: If 1, only return the main performer songs. If 0, only return the featuring performer songs. If empty, return both.
         :param offset: Pagination offset. Default: 0.
         :param limit: Number of results to retrieve. None: no limit. Default: 100.
         :param sort_by: Sort criteria. Available values are : name, releaseDate, spotifyStream, shazamCount, youtubeViews, spotifyPopularity. Default: name
@@ -901,11 +916,13 @@ class ArtistAsync:
 
         endpoint = f"/api/v2.21/artist/{artist_uuid}/songs"
         params = {
+            "mainPerformer": main_performer,
             "offset": offset,
             "limit": limit,
             "sortBy": sort_by,
             "sortOrder": sort_order,
         }
+
         result = await request_looper_async(endpoint, params)
         return result if result is not None else {}
 
