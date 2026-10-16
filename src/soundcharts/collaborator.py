@@ -67,7 +67,7 @@ class Collaborator:
         """
         Get the metadata of several collaborators using their UUIDs.
 
-        :param collaborator_uuids: A list of artist UUIDs.
+        :param collaborator_uuids: A list of collaborator UUIDs.
         :return: JSON response or an empty dictionary.
         """
         if not isinstance(collaborator_uuids, list):
@@ -248,7 +248,7 @@ class CollaboratorAsync:
         """
         Get the metadata of several collaborators using their UUIDs.
 
-        :param collaborator_uuids: A list of artist UUIDs.
+        :param collaborator_uuids: A list of collaborator UUIDs.
         :return: JSON response or an empty dictionary.
         """
         if not isinstance(collaborator_uuids, list):
